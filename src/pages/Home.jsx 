@@ -1,0 +1,41 @@
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import TemplateCard from '../components/TemplateCard';
+
+const Home = () => {
+  const navigate = useNavigate();
+
+  const templates = [
+    { id: 'classic', name: 'Classic Professional', desc: 'Sangat cocok untuk melamar ke korporat.', img: 'https://via.placeholder.com/300x400?text=Template+Classic' },
+    { id: 'modern', name: 'Modern Creative', desc: 'Desain bersih dengan aksen warna menarik.', img: 'https://via.placeholder.com/300x400?text=Template+Modern' },
+    { id: 'minimal', name: 'Minimalist Lean', desc: 'Sederhana, fokus pada pengalaman kerja.', img: 'https://via.placeholder.com/300x400?text=Template+Minimalist' },
+  ];
+
+  const handleSelectTemplate = (id) => {
+    // Navigasi ke halaman builder sambil membawa ID template yang dipilih
+    navigate(`/builder?template=${id}`);
+  };
+
+  return (
+    <div className="max-w-6xl mx-auto px-4 py-12">
+      <header className="text-center mb-16">
+        <h1 className="text-4xl font-extrabold mb-4">Buat CV Profesional dalam Hitungan Menit</h1>
+        <p className="text-gray-600 text-lg">Pilih salah satu template terbaik kami dan mulai perjalanan karirmu.</p>
+      </header>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {templates.map((tpl) => (
+          <TemplateCard 
+            key={tpl.id}
+            name={tpl.name}
+            description={tpl.desc}
+            image={tpl.img}
+            onSelect={() => handleSelectTemplate(tpl.id)}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default Home;

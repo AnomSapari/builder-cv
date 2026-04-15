@@ -1,0 +1,33 @@
+import React, { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import CVForm from '../components/CVForm';
+import CVPreview from '../components/CVPreview';
+import { dummyData } from '../data/dummyCV'; // Data dummy yang kita buat sebelumnya
+
+const Builder = () => {
+  const [searchParams] = useSearchParams();
+  const templateId = searchParams.get('template') || 'classic'; // Default ke classic jika tidak ada
+
+  // Inisialisasi state dengan data dummy agar tidak kosong
+  const [formData, setFormData] = useState(dummyData);
+
+  return (
+    <div className="flex flex-col md:flex-row min-h-screen">
+      {/* Bagian Kiri: Form Input */}
+      <div className="w-full md:w-1/2 p-6 bg-gray-50 overflow-y-auto">
+        <h2 className="text-2xl font-bold mb-6">Edit Data CV</h2>
+        <CVForm data={formData} onChange={setFormData} />
+      </div>
+
+      {/* Bagian Kanan: Live Preview */}
+      <div className="w-full md:w-1/2 p-6 bg-white flex justify-center items-start overflow-y-auto">
+        <div className="sticky top-6 w-full max-w-[210mm]"> {/* Ukuran A4 */}
+           <h2 className="text-xl font-semibold mb-4 text-center">Preview ({templateId})</h2>
+           <CVPreview data={formData} template={templateId} />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Builder;
