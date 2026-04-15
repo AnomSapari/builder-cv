@@ -4,7 +4,7 @@ export const dummyCVData = {
   jabatan: "Frontend Developer",
   telepon: "0812-XXXX-XXXX",
   email: "sapari.dev@example.com",
-  kota: "Jakarta",
+  kota: "Jakarta balekambang",
   
   pendidikan: "S1 Teknik Informatika\nUniversitas Gunadarma\n2019 - 2023\nIPK: 3.68\n\n• Lulus dengan predikat Sangat Memuaskan",
   
